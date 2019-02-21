@@ -1,10 +1,16 @@
 package com.example.web;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
+import java.util.Date;
+
 public class Person {
-    String personCode;
-    String Username;
-    String sex;
-    String birthday;
+    private String personCode;
+    private String Username;
+    private String sex;
+    private String birthday;
+    @JSONField(format = "yyyy-MM-dd hh:mm:ss")
+    private Date createTime;
 
     public String getPersonCode() {
         return personCode;
@@ -36,5 +42,13 @@ public class Person {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

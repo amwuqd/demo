@@ -9,7 +9,6 @@ public class Person {
     private String Username;
     private String sex;
     private String birthday;
-    @JSONField(format = "yyyy-MM-dd hh:mm:ss")
     private Date createTime;
 
     public String getPersonCode() {

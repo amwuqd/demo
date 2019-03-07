@@ -1,0 +1,35 @@
+server:
+  port: 9999
+student:
+  id: 123
+  name: 黄奖
+  sex: male
+  hobbies:
+    - 篮球
+    - 羽毛球
+  skill:
+    - 运维
+    - DB
+  course:
+    id: 111
+    coureName: 语文
+spring:
+  datasource:
+    url: jdbc:mysql://139.196.88.110:3307/test_hj
+    username: test_hj
+    password: test_hj
+    driver-class-name: com.mysql.jdbc.Driver
+
+
+
+
+    #logging.level.root =debug
+    #com.example.blog.name=程序猿DD
+    #com.example.blog.title=Spring Boot 教程
+    #spring.profiles.active=
+    #server.port=8080
+    #
+    #spring.mvc.date-format=yyyy-MM-dd HH:mm:ss
+    #
+    #spring.http.encoding.enabled=true
+    #spring.http.encoding.charset=UTF-8

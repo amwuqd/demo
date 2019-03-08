@@ -3,7 +3,9 @@ package com.example.demo;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.example.Service.PersonMapper;
 import com.example.web.Person;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.AutoConfigurationMetadata;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -27,6 +29,7 @@ import java.util.List;
 @RestController
 @SpringBootApplication
 @ComponentScan("com.example")
+@MapperScan("com.example")
 public class DemoApplication extends WebMvcConfigurationSupport {
 
     @Override
@@ -37,6 +40,7 @@ public class DemoApplication extends WebMvcConfigurationSupport {
         registry.addResourceHandler("/webjars/**")
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
+
 
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {

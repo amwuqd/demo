@@ -1,6 +1,7 @@
 package com.example.web;
 
 
+import com.example.Service.PersonMapper;
 import com.example.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -23,6 +24,9 @@ public class HelloController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PersonMapper personMapper;
 
 
     @RequestMapping(value = "/",method = RequestMethod.GET)
@@ -53,15 +57,10 @@ public class HelloController {
         map.put("time", new Date());
         return map;
     }
-    @RequestMapping(value = "/person")
-    public Person person(HttpServletRequest request){
-        Person person = new Person();
-        person.setPersonCode("00116271");
-        person.setUsername("Huangjiang");
-        person.setSex("male");
-        person.setBirthday("1990-01-01");
-        person.setCreateTime(new Date());
-        return  person;
+    @RequestMapping(value = "/insertIntoPerson")
+    public String insertIntoPerson(@RequestBody Person person){
+        personMapper.insertIntoPerson(person.getPersonCode(),person.getUsername(),person.getSex(),person.getBirthday(),person.getCreateTime());
+        return  "insert ok";
     }
 
 

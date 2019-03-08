@@ -18,7 +18,7 @@ spring:
     url: jdbc:mysql://139.196.88.110:3307/test_hj
     username: test_hj
     password: test_hj
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
 
 

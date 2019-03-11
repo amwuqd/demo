@@ -1,6 +1,8 @@
 package com.example.web;
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.example.Service.PersonMapper;
 import com.example.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,8 +61,61 @@ public class HelloController {
     }
     @RequestMapping(value = "/insertIntoPerson")
     public String insertIntoPerson(@RequestBody Person person){
-        personMapper.insertIntoPerson(person.getPersonCode(),person.getUsername(),person.getSex(),person.getBirthday(),person.getCreateTime());
-        return  "insert ok";
+        Integer flag ;
+        try {
+            flag = personMapper.insertIntoPerson(person.getPersonCode(),person.getUsername(),person.getSex(),person.getBirthday(),person.getCreateTime());
+            System.out.println("flag:"+flag);
+
+            if( flag == 1 )
+                return  "insert ok";
+            else
+                return  "insert failed";
+
+        } catch (Exception e){
+            System.out.println("exception:"+e);
+            return  "insert failed";
+        }
+
+    }
+    @RequestMapping(value = "/insertIntoPersonE")
+    public String insertIntoPersonE(@RequestBody Person person){
+        Integer flag ;
+        try {
+            flag = personMapper.insertIntoPersonE(person);
+            System.out.println("flag:"+flag);
+
+            if( flag == 1 )
+                return  "insert ok";
+            else
+                return  "insert failed";
+
+        } catch (Exception e){
+            System.out.println("exception:"+e);
+            return  "insert failed";
+        }
+
+    }
+
+    @RequestMapping(value = "/findByPeroncode")
+    public Person findByPeroncode(@RequestBody Person person){
+        return personMapper.findByPeroncode(person.getPersonCode());
+    }
+
+    @RequestMapping(value = "/findPersonByPersoncodeList")
+    public JSONArray findPersonByPersoncodeList(@RequestBody List<String> personCodeList){
+        List<Person>  personList = new ArrayList<Person>();
+        personList = personMapper.findPersonByPersoncodeList(personCodeList);
+        JSONArray jsonArray = JSONArray.parseArray(JSON.toJSONString(personList));
+        System.out.println(jsonArray);
+        return jsonArray;
+//        return  personList;
+    }
+
+    @RequestMapping(value = "/findPersonAll")
+    public List<Person> findPersonAll(){
+        List<Person>  personList = new ArrayList<Person>();
+        personList = personMapper.findPersonAll();
+        return  personList;
     }
 
 
